@@ -1,0 +1,349 @@
+Utilisation Linux----->CD live>Test
+			Installation Linux seul
+			Cohabitation:Linux+OS--->GRUB(il va etre installé pour vous donner la liste des OS existant)
+			Virtualization--->MAchine virtuelle(VM)
+hyperviseur(virtualbox,VMWare,...)>nous permet de creer des VM- VM interagit avec les ressources de machine physique. 
+
+linux-->IDE(hd)
+	Sata,SCSI,...(sd)
+
+linux tout est fichier.
+
+partition primaires/part.secondaires
+
+Windows-->le partitionnement partition c: 600Go/ partition D: 400Go(disque dur logique)
+lorsque le formattage, on a besoin de Systeme Gestion de fichier de windows:
+Formattage--->SGF(NTA,FAT32,..)
+on peut avoir 4 disques dur
+
+Master/Slave  Master/Slave
+sda	sdb 	sdc	sdd
+partition de Sda -->sda1,sda2
+
+lorsque le formattage, on a besoin de Systeme Gestion de fichier de linux:
+ext2,ext3,ext4
+
+pour maitraiser linux:
+linux--->Commandes shell linux.le shell dans linux c'est un interpreteur 
+     --->Les scripts shell: creer un programme avec des boucles,...
+     ---> Fichiers de configuration
+
+/-->racine(root)--->home chaque utilisateur a dossier home
+		--->etc(contient les fichiers de configuration)
+		--->dev(contient tous les devices)
+		--->opt(comme programm files ou les application sont installés.
+		--->boot
+		--->media
+		--->bin
+		--->sbin
+bios>vtx(disabled->enabled)
+
+
+~: le tilde c'est un chemin
+~: c'est equivaut /home/nomutilisateur exp /home/fatma
+
+chemin absolue
+chemin relatif
+
+2 types d'utilisateurs
+super User/super utilisateur/root: on peut trouver un seul root qui a tout les privileges le root qui cree les admin il peut le supprimer
+toujours avoir un seul si je trouve # en plqce de $ donc je suis root.
+administrateur: on peut creer + admin
+
+lorsque on trouve $ donc je suis un simple user.
+
+nomcomonde --mot=6 -h 5 --test=20
+
+--mot c'est commqnde longue
+-h commande court
+
+setxkbmap fr
+man clear ==>text creer manuelle
+man history 
+pwd>chemin de votre emplacement.
+.:repertoire courant
+..:rep parent
+
+cd .. >chemin relatif
+cd /home >chemin absolue
+mkdir A/B/C/D va creer le D si B et C sont creer
+mkdir -p A/B/C/D si il y'a un dossier n'est pas existe deja -p il va creer
+
+
+fichiers hello.c w affichage.cp dans le dossier programmation
+fichier usecase dans rep. conception
+2fichiers ld et lmd dans rep.base de donnees
+4fichiers f1.odd,f2.odd,f3.odd,f4.txt dans rep.linux 
+
+
+
+1)mkdir Cours TD TP
+2)mkdir Cours/Programmation Cours/Conception
+3)mkdir TD/BD
+4) mkdir TP/Linux
+5) touch Cours/Programmation/hello.c
+touch Cours/Programmation/affichage.cp
+6) touch Cours/Conception/usecase
+7)touch TD/BD/ld
+touch TD/BD/lmd
+8)touch TP/Linux/f1.odd
+touch TP/Linux/f2.odd
+touch TP/Linux/f3.odd
+
+pour copier un fichier utiliser commande cp source dest
+
+cp tp/linux/f4.txt cours/programmation
+
+pour copier un repertoire avec la commande:cp -R
+
+Deplacer un fichier/repertoire -->mv(move)
+mv td/bd tp/linux
+mv cours/programmation/hello.c tp/linux
+
+Renommer un fichier : mv cours/programmation/hello.c tp/linux
+mv tp/linux/f1.odt tp/linux/aut_fichier.odt
+
+pour supprimer un fichier: rm
+----------------- rep: rm -r
+demander une confirmation de suppression: rm -i 
+rm-v verbose
+
+a*.txt==>remplace un ou plusieurs carcteres
+rm -f==>forcer la suppression
+
+
+ls -l
+chmod 750 
+
+whoami
+
+which command exp: which clear===>il va afficher le path de la commande clear
+
+commande date==>la commande pour connait la date
+
+du-->dish usage dur affiche toutes les details
+du -h -->h humain avec les unites M,K
+du -h -s-->s pour le total
+du -h -s /etc
+
+espace de chaque ficheier dans ce disque
+
+
+la recherche:
+2 recherches:recherche rapide/recherche approfondie
+Recherche rapide:locate mot exp:locate test permet de chercher sur la totalité du disque(/)
+toujour a un seul parametre chercher sur le repertoire ou les fichier
+
+les fichier recemment creer locate ne peut pas le trouver.
+updatedb pour mettre ajour labase de donnee et locate retourne le bpath de fichier que locate n'a pas le trover
+
+2recherche approfondie: find [ou?] quoi? [que faire avec?]
+find name "test">trouver dans le repertoire courant
+
+find . -name "test"
+find / -name "test">different locate
+find / -name "*test*"
+find / -name "*.jpg"
+
+find -size 50M
+find -size +50M
+find -size -50M/k/G c'est le quoi
+
+find -name "*.jpg" -size 5M
+
+find / -name "*.jpg" -size 5M
+
+find -type f(fichier)
+find -type D(directory)
+find -type f -name "*test" -size 6M
+
+find -user fatma
+find -group nomgroupe -user username -name 
+find -ctime -2
+find -ctime +2
+
+find -cmin -5
+find -cmin -10
+
+find -mtime -50
+find -atime -4 a=access
+find -atime 4
+find -perm 777 selon les permissions
+find -perm 600
+find -type f -size -10M -size +5M
+
+find -name "test" -printf "%p ********* %u\n" %u username
+%p path
+
+find -name "test" -exec rm {}\;
+find -name "test" -ok -exec rm {}\; ==>Confirmation
+find / -name "*.jpg" -exec chmod 748 {}\;
+
+
+find -name "test" -print --> [que faire avec?]
+----------------- -delete -->  [que faire avec?]
+
+afficher les droits d'accees de tous les fichiers ordinaires dans votre rep personnel qui commencent par f:
+reponse: find -name "f*" -type f -exec -ls-l {}\;
+
+grep mot nom_fichier >chercher les lignes conteneant le mot test
+
+editeurs:nane,gedit, vi/vim
+
+gedit etudiant.csv
+
+cat test.txt
+
+less texst.txt==>afficher le contenu du fichier page par page
+more test.txt afficher le fichier jusqu'a n stages
+head test.txt afficher le premier partie
+tail test.txt afficher le dernier partie
+
+tail -3 test.txt
+head -3 test.txt
+
+grep -i foulen etudiants.csv ==> ne peut pas tenir compte les cassses maj/min
+
+grep -n foulen etudiants.csv
+grep -c foulen etudiants.csv nombre de ligne
+
+grep nabeul etudiants.csv
+grep -v nabeul etudiants.csv
+
+grep -E [0123456789] etudiants.csv
+
+grep -E [fF]oulene etudiants.csv
+
+grep -E [a-zA-Z] etudiants.csv
+
+grep -E [xyz] etudiants.csv
+
+grep -E ^[xyz] etudiants.csv ==>debut par x ou you z
+
+grep -E nabeul$ etudiants.csv==>fin par l
+
+
+grep -E [^abc] etudiants.csv ==>les lignes qui ne contiennt pas ni a ni b ni c
+
+grep -E [^0-9] etudiants.csv 
+
+grep -E ^[^0-9] etudiants.csv 
+
+grep -E q[^u] etudiants.csv 
+grep -E abs?xyz etudiants.csv ==> 0 ou 1 seul fois
++:===>0 ou 1 seul foix
+*===>
+
+cut -c 10-25 etudiants.csv
+cut -c 10- etudiants.csv
+
+cut -c -25 etudiants.csv
+
+cut -d ";" -f 1,3,5 etudiants.csv
+
+cut -d ";" -f 1-3 etudiants.csv
+
+cut -d ";" -f 1-3,5 etudiants.csv
+
+sort numbers trie
+sort -n numbers ordre numerique
+
+sort -n -r numbers reverse
+
+sort -R numbers aleatoire
+
+sort -o sortie -n numbers
+
+wc number 3valeurs:nbre de lignes nbre de mots, nbre d'octets
+
+wc -l etudiants.csv
+wc -w etudiants.csv
+
+wc -c etudiants.csv
+
+wc -m etudiants.csv
+
+
+commande --> resultat sur ecran(flux de sortie standard)
+$ls>sortie.txt
+>c'est un chevron superieur
+qui permet de rediriger la resultat dans un fichier
+
+$wc sortie.txt >fich1
+$pwd sortie.txt >fich1 -->il va ecraser son contenue et il va affecter le nouveau contenu
+$ls -l >> sortie.txtc
+$xyz>sortie.txt
+Flux de sortie-->Standard
+	      -->Erreur
+il va afficher ce conteue lorsque la commande n'est pas correcte
+ls -l > output.txt 2> erreurs.txt
+      1> --------  2> ------------	
+$echo "bonjour" > output.txt 2> erreurs.txt
+                >>           2>>  
+
+on peut affecter le contenue if commande marche il va stocker dans un fichier et s'il n'est pas correcte aussi affecter dans le meme fichier
+
+$ls -l >f1 2>&1
+
+Affichage:
+commande: ---> sortie standard:>, >>
+	       ..... devenir: 2>; 2>>
+		fusion: 2>&1
+
+lecture a partir d'un fichier :<  exp: cat <f1
+lire a partir du fichier progressivement: sort -n << stop(quelque soit le mot)
+exp: $ wc -w <<Fin 
+> Bonjur 1Info3
+>hello world!
+> Fin
+4
+
+$ sort -nr <<stop > nombre_triee 2>&1
+
+| pipe(tube)
+cmd1|cmd2|cmd3 ....|cmdn
+
+$cut -d ";" -f 1-3 etudiants.csv |head -2
+$ ls -l | wc -l
+$ du | sort -nr |less
+$cut -d ":" -f 1,3 /etc/passwd|grep root| wc -m
+
+
+les flux de redirections:
+$ls
+rediriger l'information dans un fichier 
+$ls >sortie.txt --> ici il va creer le fichier s'il n'exite pas et rediriger le resultat dans un fichier sortie.txt 
+si le fichier existe il va ecraser son contenue
+
+ls>>sortie.txt il va creer le ficheir s'il n'existe pas et i va ajouter le nouveau sortie à sa fin.
+flux de sortie: standard--> >/ >>
+		Erreur --> 2>/2>>
+
+lx 2> erreur.txt ->il va afficher le msg d'erreur dans cette fichier
+abc 2>> erreur.txt ->il va ecraser le contene de fichier erreur.txt
+
+$commande >f1 2>f2 --> si la commande correcte doit etre rediriger vers le fichier f1 s'il n'est pas correcte le contenue doit etre rediriger vers le fichier f2
+$commande >f3 2>&1 --> si la commande correcte ou pas le contenue doit etre rediriger vers le fichier f3
+
+lire à partr du fichier <
+lire à partir du clavier progressivement <<
+
+$cat < sortie.txt
+
+$sort -n << stop
+$wc -w << fin -->combien de mots dans cette phrase
+
+Pipe(tube) -->|
+$comm1|comm2 |comm3|....|commn
+--> le resultat de la commande1 va doit etre passer comme etant paramatre à la commande2
+
+$less f1.txt | wc -w
+$du | sort -nr |less
+$cat /etc/passwd --> va trouver tous les utilisateurs creere les autres users sont des services
+user:x:1000:1000:fatma,,,:/home/fatma:/bin/bash
+     :password cryptee:UID: groupeID:nom-complet:rep personel:notre shell par defaut ,l'interpreteur qui nous repond c'est le bash 
+
+/etc/passwd : fichier csv
+entre 1--999 sont reservées pour les autres services
+
+$cat /etc/passwd | grep 1000 | cut -d ":" -f 1,3 | wc -m
